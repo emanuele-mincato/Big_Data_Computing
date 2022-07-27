@@ -11,9 +11,8 @@ DATA FORMAT: The dataset is provided as a file where each row is associated to a
              If in the same transaction the customer purchased several products, they will be represented in separate rows. 
              Note that the Quantity field can also contain a negative value -x to denote that x previously purchased units of the product have been returned.
              
-TASK:        You must write a program GxxxHW1.java (for Java users) or GxxxHW1.py (for Python users), where xxx is your 3-digit group number (e.g., 004 or 045),
-             which receives in input, as command-line (CLI) arguments, 2 integers K and H, a string S, and a path to the file storing the dataset, and does 
-             the following:
+TASK:        You must write a program which receives in input, as command-line (CLI) arguments, 2 integers K and H, a string S, and a path to the file storing 
+             the dataset, and does the following:
              
              Reads the input file into an RDD of strings called rawData (each 8-field row is read as a single string), and subdivides it into K partitions,
              and prints the number of rows read from the input file (i.e., the number of elements of the RDD).
