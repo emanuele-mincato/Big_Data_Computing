@@ -1,0 +1,32 @@
+You must perform the following tasks.
+
+TASK 1:     Download the template. The template contains a skeleton of the implementation of the 2-round MapReduce algorithm described above. Specifically,
+            the template is structured as follows:
+            Receives in input the following command-line (CLI) arguments:  
+            A path to a text file containing point set in Euclidean space. Each line of the file contains, separated by commas, the coordinates of a point. 
+            Your program should make no assumptions on the number of dimensions!
+            4 integers: k (number of centers), z (number of outliers), and L (number of partitions).
+            Reads the input points into and RDD of Vector called inputPoints, subdivided into L partitions, sets the Spark configuration, and prints various statistics.
+            Runs a method MR_kCenterOutliers to compute the solution (i.e., a set of at most k centers) to the k-center problem with z outliers for the input dataset. 
+            The method implements the 2-round algorithm described. In Round 1 it extracts k+z+1 coreset points from each partition using method kCenterFFT which 
+            implements the Farthest-First Traversal algorithm, and compute the weights of the coreset points using method computeWeights. In Round 2, it collects the 
+            weighted coreset into a local data structure and runs method SeqWeightedOutliers, to extract and return the final set of centers.
+            Computes the value of the objective function for the returned solution (i.e., the maximum distance of a point from its closest center, excluding the z 
+            largest distances), using method computeObjective.
+            Prints the value of the objective function and the time taken by computeObjective.
+            
+TASK 2:     Rename the template and complete the code as follows:
+            Complete Round 2 of MR_kCenterOutliers to extract and return the final solution. IMPORTANT: you must run SeqWeightedOutliers on the weighted coreset using 
+            alpha=2
+            Add suitable istructions to MR_kCenterOutliers, so to measure and print separately the time required by Round 1 and Round 2. Please be aware of the Spark's 
+            lazy evaluation.
+            Write the code for method computObjective. It is important that you keep in mind that the input dataset may be very large and that, in this case,  
+            any structure of the size of this dataset may not fit into local memory.
+            The output of your code should use the following OutputFormat. (Note that the  lines "Initial guess", "Final Guess" and "Number of guesses" are 
+            those prinited by SeqWeightedOutliers).
+
+TASK 3:     Test and debug your program in local mode on your PC to make sure that it runs correctly. For this local test you can use the 16-point dataset
+            testdataHW3.txt which you can download here and the datasets uber-small.csv and artificial9000.txt, available in this page.
+
+TASK 4:     Test your program on the cluster using the datasets which have been preloaded in the HDFS available in the cluster. Use various configurations of parameters 
+            and report your results using the tables given in this word file.
